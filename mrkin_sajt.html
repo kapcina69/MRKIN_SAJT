@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClean - Profesionalne Usluge Čišćenja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #667eea;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .why-card:hover {
+            transform: scale(1.05);
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .why-card p {
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-title::after {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+        }
+
+        .info-text h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                ✨ ProClean
+            </div>
+            <ul class="nav-links">
+                <li><a href="#pocetna">Početna</a></li>
+                <li><a href="#usluge">Usluge</a></li>
+                <li><a href="#o-nama">O nama</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="pocetna">
+        <h1>Profesionalne Usluge Čišćenja</h1>
+        <p>Vaš partner za čistoću i higijenu u domu i poslovnom prostoru</p>
+        <a href="#kontakt" class="cta-button">Zakažite Termin</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="usluge">
+        <h2 class="section-title">Naše Usluge</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Redovno Čišćenje Objekata</h3>
+                <p>Profesionalno održavanje čistoće poslovnih i stambenih prostora na dnevnom, nedeljnom ili mesečnom nivou.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Mašinsko Pranje Podova</h3>
+                <p>Dubinsko čišćenje tvrdih podnih površina najsavremenijom opremom za dugotrajan sjaj i higijenu.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💦</div>
+                <h3>Pranje pod Visokim Pritiskom</h3>
+                <p>Efikasno uklanjanje upornih mrlja i nečistoća sa eksterijernih površina.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛋️</div>
+                <h3>Dubinsko Čišćenje</h3>
+                <p>Profesionalno pranje tepiha, itisona i nameštaja sa potpunim uklanjanjem alergena i nečistoća.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🪟</div>
+                <h3>Čišćenje Staklenih Površina</h3>
+                <p>Besprekorno čiste staklene površine bez tragova za savršen izgled Vašeg prostora.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌳</div>
+                <h3>Uređivanje Zelenih Površina</h3>
+                <p>Održavanje i nega zelenih površina i okoline objekata za prijatan ambijent.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Uklanjanje Grafita</h3>
+                <p>Stručno i efikasno uklanjanje grafita bez oštećenja površina.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚗</div>
+                <h3>Čišćenje Garaža</h3>
+                <p>Detaljno čišćenje garažnih prostora i parking površina.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Čišćenje Nakon Građevinskih Radova</h3>
+                <p>Kompletno čišćenje prostora nakon renoviranja ili gradnje za useljiv prostor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="o-nama">
+        <h2 class="section-title">O Nama</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Vaš Pouzdani Partner za Čišćenje</h3>
+                <p>Smo profesionalna firma sa dugogodišnjim iskustvom u pružanju usluga čišćenja. Naš tim stručnjaka koristi najsavremeniju opremu i ekološki prihvatljiva sredstva kako bi Vam pružio uslugu najvišeg kvaliteta.</p>
+                <p>Verujemo da čist prostor doprinosi boljem kvalitetu života i rada, zato pristupamo svakom projektu sa pažnjom i posvećenošću.</p>
+                <div class="about-features">
+                    <div class="feature-item">✓ Licencirani i osigurani</div>
+                    <div class="feature-item">✓ Dostupni 24/7</div>
+                    <div class="feature-item">✓ Ekološka sredstva</div>
+                    <div class="feature-item">✓ Povoljne cene</div>
+                </div>
+            </div>
+            <div>
+                <h3 class="section-title">Zašto Izabrati Nas?</h3>
+                <div class="why-choose">
+                    <div class="why-card">
+                        <div class="why-icon">⭐</div>
+                        <h3>Kvalitet</h3>
+                        <p>Najviši standardi u svakom poslu</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">⚡</div>
+                        <h3>Brzina</h3>
+                        <p>Efikasno i pravovremeno izvršavanje</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">💰</div>
+                        <h3>Cena</h3>
+                        <p>Konkurentne i transparentne cene</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">🤝</div>
+                        <h3>Poverenje</h3>
+                        <p>Stotine zadovoljnih klijenata</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="kontakt">
+        <h2 class="section-title">Kontaktirajte Nas</h2>
+        <div class="contact-content">
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ime i Prezime</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Poruka</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Pošaljite Poruku</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <h4>Telefon</h4>
+                        <p>+381 XX XXX XXXX</p>
+                        <p>+381 XX XXX XXXX</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>info@proclean.rs</p>
+                        <p>kontakt@proclean.rs</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h4>Adresa</h4>
+                        <p>Beograd, Srbija</p>
+                        <p>Radimo na teritoriji cele Srbije</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕐</div>
+                    <div class="info-text">
+                        <h4>Radno Vreme</h4>
+                        <p>Ponedeljak - Petak: 08:00 - 20:00</p>
+                        <p>Vikend: 09:00 - 17:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ProClean. Sva prava zadržana.</p>
+        <div class="social-links">
+            <a href="#" title="Facebook">📘</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="LinkedIn">💼</a>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Hvala Vam na poruci! Kontaktiraćemo Vas u najkraćem mogućem roku.');
+            this.reset();
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .why-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
