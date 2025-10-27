@@ -11,22 +11,52 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --text-secondary: #666;
+            --card-bg: #ffffff;
+            --section-bg: #f8f9fa;
+            --shadow: rgba(0,0,0,0.1);
+            --shadow-hover: rgba(0,0,0,0.15);
+            --border-color: #f0f0f0;
+            --overlay-bg: rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a2e;
+            --text-color: #eee;
+            --text-secondary: #aaa;
+            --card-bg: #16213e;
+            --section-bg: #0f1419;
+            --shadow: rgba(0,0,0,0.3);
+            --shadow-hover: rgba(0,0,0,0.5);
+            --border-color: #2a2a4e;
+            --overlay-bg: rgba(0, 0, 0, 0.85);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow);
         }
 
         nav {
@@ -63,9 +93,76 @@
             opacity: 0.8;
         }
 
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .theme-icon {
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:active .theme-icon {
+            transform: rotate(360deg);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
             padding: 150px 2rem 100px;
             text-align: center;
@@ -88,7 +185,7 @@
         .cta-button {
             display: inline-block;
             background: white;
-            color: #667eea;
+            color: var(--primary-color);
             padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
@@ -99,7 +196,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px var(--shadow-hover);
         }
 
         /* Sections */
@@ -113,7 +210,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: #667eea;
+            color: var(--primary-color);
             position: relative;
             padding-bottom: 1rem;
         }
@@ -126,7 +223,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             border-radius: 2px;
         }
 
@@ -139,17 +236,18 @@
         }
 
         .service-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #667eea;
+            border-top: 4px solid var(--primary-color);
+            cursor: pointer;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 30px var(--shadow-hover);
         }
 
         .service-icon {
@@ -158,19 +256,19 @@
         }
 
         .service-card h3 {
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 1rem;
             font-size: 1.4rem;
         }
 
         .service-card p {
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
         /* About Section */
         .about {
-            background: #f8f9fa;
+            background: var(--section-bg);
         }
 
         .about-content {
@@ -181,13 +279,13 @@
         }
 
         .about-text h3 {
-            color: #667eea;
+            color: var(--primary-color);
             font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
         .about-text p {
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
             line-height: 1.8;
         }
@@ -203,10 +301,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #667eea;
+            color: var(--primary-color);
             font-weight: 500;
         }
-
+        }
+        
         /* Why Choose Us */
         .why-choose {
             display: grid;
@@ -218,7 +317,7 @@
         .why-card {
             text-align: center;
             padding: 2rem;
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             border-radius: 15px;
             transition: transform 0.3s;
         }
@@ -233,12 +332,12 @@
         }
 
         .why-card h3 {
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
 
         .why-card p {
-            color: #666;
+            color: var(--text-secondary);
         }
 
         /* Gallery Section */
@@ -253,7 +352,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px var(--shadow);
             aspect-ratio: 4/3;
             cursor: pointer;
             transition: transform 0.3s;
@@ -298,7 +397,7 @@
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
         }
 
@@ -392,10 +491,11 @@
 
         /* Footer */
         footer {
-            background: #2d3748;
-            color: white;
+            background: var(--card-bg);
+            color: var(--text-color);
             text-align: center;
             padding: 2rem;
+            border-top: 1px solid var(--border-color);
         }
 
         footer p {
@@ -410,13 +510,13 @@
         }
 
         .social-links a {
-            color: white;
+            color: var(--text-color);
             font-size: 1.5rem;
             transition: color 0.3s;
         }
 
         .social-links a:hover {
-            color: #667eea;
+            color: var(--primary-color);
         }
 
         /* Animations */
@@ -431,10 +531,45 @@
             }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--primary-gradient);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 3rem;
+                transition: left 0.3s;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
             }
 
             .hero h1 {
@@ -464,7 +599,7 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
             width: 50px;
             height: 50px;
@@ -476,7 +611,7 @@
             opacity: 0;
             transition: opacity 0.3s, transform 0.3s;
             font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px var(--shadow-hover);
             z-index: 999;
         }
 
@@ -497,7 +632,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: var(--overlay-bg);
             animation: fadeIn 0.3s;
         }
 
@@ -508,7 +643,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: var(--card-bg);
             padding: 2.5rem;
             border-radius: 20px;
             max-width: 700px;
@@ -517,7 +652,7 @@
             overflow-y: auto;
             position: relative;
             animation: slideUp 0.4s;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px var(--shadow-hover);
         }
 
         .modal-header {
@@ -526,7 +661,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid var(--border-color);
         }
 
         .modal-icon {
@@ -534,7 +669,7 @@
         }
 
         .modal-header h2 {
-            color: #667eea;
+            color: var(--primary-color);
             margin: 0;
             font-size: 1.8rem;
         }
@@ -545,7 +680,7 @@
             right: 1.5rem;
             font-size: 2rem;
             cursor: pointer;
-            color: #999;
+            color: var(--text-secondary);
             transition: color 0.3s, transform 0.3s;
             background: none;
             border: none;
@@ -558,18 +693,18 @@
         }
 
         .close-modal:hover {
-            color: #667eea;
-            background: #f0f0f0;
+            color: var(--primary-color);
+            background: var(--section-bg);
             transform: rotate(90deg);
         }
 
         .modal-body {
-            color: #555;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
         .modal-body h3 {
-            color: #667eea;
+            color: var(--primary-color);
             margin-top: 1.5rem;
             margin-bottom: 1rem;
             font-size: 1.3rem;
@@ -582,11 +717,11 @@
 
         .modal-body li {
             margin-bottom: 0.5rem;
-            color: #666;
+            color: var(--text-secondary);
         }
 
         .modal-body strong {
-            color: #667eea;
+            color: var(--primary-color);
         }
 
         .service-card {
@@ -630,6 +765,16 @@
                 <li><a href="#galerija">Galerija</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -887,6 +1032,48 @@
     <div class="scroll-top" id="scrollTop">↑</div>
 
     <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.querySelector('.theme-icon');
+        const body = document.body;
+
+        // Check for saved theme preference or default to 'light' mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Update icon
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            });
+        });
+
         // Service details data
         const serviceDetails = {
             'redovno-ciscenje': {
