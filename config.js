@@ -5,7 +5,7 @@
 const siteConfig = {
     // Osnovne informacije o firmi
     company: {
-        name: 'Facility Solutions',
+        name: 'FACILITY SOLUTIONS',
         tagline: 'Profesionalne Usluge Čišćenja i održavanja objekata',
         description: 'Vaš partner za čistoću i higijenu u domu i poslovnom prostoru'
     },
