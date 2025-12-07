@@ -5,16 +5,15 @@
 const siteConfig = {
     // Osnovne informacije o firmi
     company: {
-        name: 'ProClean',
-        tagline: 'Profesionalne Usluge Čišćenja',
+        name: 'Facility Solutions',
+        tagline: 'Profesionalne Usluge Čišćenja i održavanja objekata',
         description: 'Vaš partner za čistoću i higijenu u domu i poslovnom prostoru'
     },
 
     // Kontakt informacije
     contact: {
         phones: [
-            '+381 XX XXX XXXX',
-            '+381 XX XXX XXXX'
+            '+381 61 60 88890',
         ],
         emails: [
             'info@proclean.rs',
@@ -40,14 +39,14 @@ const siteConfig = {
 
     // Hero sekcija
     hero: {
-        title: 'Profesionalne Usluge Čišćenja',
+        title: 'Profesionalne Usluge Čišćenja i Održavanja Objekata',
         subtitle: 'Vaš partner za čistoću i higijenu u domu i poslovnom prostoru',
         ctaText: 'Zakažite Termin'
     },
 
     // O nama sekcija
     about: {
-        title: 'Vaš Pouzdani Partner za Čišćenje',
+        title: 'Vaš Pouzdani Partner za Čišćenje i Održavanje Objekata',
         description: [
             'Smo profesionalna firma sa dugogodišnjim iskustvom u pružanju usluga čišćenja. Naš tim stručnjaka koristi najsavremeniju opremu i ekološki prihvatljiva sredstva kako bi Vam pružio uslugu najvišeg kvaliteta.',
             'Verujemo da čist prostor doprinosi boljem kvalitetu života i rada, zato pristupamo svakom projektu sa pažnjom i posvećenošću.'
@@ -145,13 +144,13 @@ const siteConfig = {
     // Galerija slika
     gallery: [
         { src: './slika1.jpg', alt: 'Čišćenje prostora 1', caption: 'Profesionalno čišćenje' },
-        { src: './slika2.jpg', alt: 'Čišćenje prostora 2', caption: 'Mašinsko pranje podova' },
+        { src: './slika2.jpg', alt: 'Čišćenje prostora 2', caption: 'Pranje pod visokim pritiskom' },
         { src: './slika3.jpg', alt: 'Čišćenje prostora 3', caption: 'Dubinsko čišćenje' },
-        { src: './slika4.jpg', alt: 'Čišćenje prostora 4', caption: 'Čišćenje staklenih površina' },
-        { src: './slika5.jpg', alt: 'Čišćenje prostora 5', caption: 'Pranje tepiha' },
-        { src: './slika6.jpg', alt: 'Čišćenje prostora 6', caption: 'Održavanje zelenih površina' },
-        { src: './slika7.jpg', alt: 'Čišćenje prostora 7', caption: 'Čišćenje garaža' },
-        { src: './slika8.jpg', alt: 'Čišćenje prostora 8', caption: 'Završni rezultati' }
+        { src: './slika4.jpg', alt: 'Čišćenje prostora 4', caption: 'Mašinsko pranje podova' },
+        { src: './slika5.jpg', alt: 'Čišćenje prostora 5', caption: 'Dubinsko pranje' },
+        { src: './slika6.jpg', alt: 'Čišćenje prostora 6', caption: 'Pranje tepiha' },
+        { src: './slika7.jpg', alt: 'Čišćenje prostora 7', caption: 'Pranje tepiha' },
+        { src: './slika8.jpg', alt: 'Čišćenje prostora 8', caption: 'Pranje staklenih površina' }
     ],
 
     // Formspree forma ID
