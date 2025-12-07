@@ -304,7 +304,6 @@
             color: var(--primary-color);
             font-weight: 500;
         }
-        }
         
         /* Why Choose Us */
         .why-choose {
@@ -489,6 +488,10 @@
             font-size: 1.2rem;
         }
 
+        .info-text p {
+            margin: 0.25rem 0;
+        }
+
         /* Footer */
         footer {
             background: var(--card-bg);
@@ -513,6 +516,7 @@
             color: var(--text-color);
             font-size: 1.5rem;
             transition: color 0.3s;
+            text-decoration: none;
         }
 
         .social-links a:hover {
@@ -723,39 +727,13 @@
         .modal-body strong {
             color: var(--primary-color);
         }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #667eea;
-            cursor: pointer;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">
+            <div class="logo" data-content="logo">
                 ✨ ProClean
             </div>
             <ul class="nav-links">
@@ -780,68 +758,16 @@
 
     <!-- Hero Section -->
     <section class="hero" id="pocetna">
-        <h1>Profesionalne Usluge Čišćenja</h1>
-        <p>Vaš partner za čistoću i higijenu u domu i poslovnom prostoru</p>
-        <a href="#kontakt" class="cta-button">Zakažite Termin</a>
+        <h1 data-content="hero-title">Profesionalne Usluge Čišćenja</h1>
+        <p data-content="hero-subtitle">Vaš partner za čistoću i higijenu u domu i poslovnom prostoru</p>
+        <a href="#kontakt" class="cta-button" data-content="hero-cta">Zakažite Termin</a>
     </section>
 
     <!-- Services Section -->
     <section id="usluge">
         <h2 class="section-title">Naše Usluge</h2>
-        <div class="services-grid">
-            <div class="service-card" data-service="redovno-ciscenje">
-                <div class="service-icon">🏢</div>
-                <h3>Redovno Čišćenje Objekata</h3>
-                <p>Profesionalno održavanje čistoće poslovnih i stambenih prostora na dnevnom, nedeljnom ili mesečnom nivou.</p>
-            </div>
-
-            <div class="service-card" data-service="masinsko-pranje">
-                <div class="service-icon">🔧</div>
-                <h3>Mašinsko Pranje Podova</h3>
-                <p>Dubinsko čišćenje tvrdih podnih površina najsavremenijom opremom za dugotrajan sjaj i higijenu.</p>
-            </div>
-
-            <div class="service-card" data-service="visoki-pritisak">
-                <div class="service-icon">💦</div>
-                <h3>Pranje pod Visokim Pritiskom</h3>
-                <p>Efikasno uklanjanje upornih mrlja i nečistoća sa eksterijernih površina.</p>
-            </div>
-
-            <div class="service-card" data-service="dubinsko-ciscenje">
-                <div class="service-icon">🛋️</div>
-                <h3>Dubinsko Čišćenje</h3>
-                <p>Profesionalno pranje tepiha, itisona i nameštaja sa potpunim uklanjanjem alergena i nečistoća.</p>
-            </div>
-
-            <div class="service-card" data-service="staklene-povrsine">
-                <div class="service-icon">🪟</div>
-                <h3>Čišćenje Staklenih Površina</h3>
-                <p>Besprekorno čiste staklene površine bez tragova za savršen izgled Vašeg prostora.</p>
-            </div>
-
-            <div class="service-card" data-service="zelene-povrsine">
-                <div class="service-icon">🌳</div>
-                <h3>Uređivanje Zelenih Površina</h3>
-                <p>Održavanje i nega zelenih površina i okoline objekata za prijatan ambijent.</p>
-            </div>
-
-            <div class="service-card" data-service="grafiti">
-                <div class="service-icon">🎨</div>
-                <h3>Uklanjanje Grafita</h3>
-                <p>Stručno i efikasno uklanjanje grafita bez oštećenja površina.</p>
-            </div>
-
-            <div class="service-card" data-service="garaze">
-                <div class="service-icon">🚗</div>
-                <h3>Čišćenje Garaža</h3>
-                <p>Detaljno čišćenje garažnih prostora i parking površina.</p>
-            </div>
-
-            <div class="service-card" data-service="gradevinski-radovi">
-                <div class="service-icon">🏗️</div>
-                <h3>Čišćenje Nakon Građevinskih Radova</h3>
-                <p>Kompletno čišćenje prostora nakon renoviranja ili gradnje za useljiv prostor.</p>
-            </div>
+        <div class="services-grid" data-content="services">
+            <!-- Usluge će biti dinamički popunjene iz config.js -->
         </div>
     </section>
 
@@ -850,39 +776,17 @@
         <h2 class="section-title">O Nama</h2>
         <div class="about-content">
             <div class="about-text">
-                <h3>Vaš Pouzdani Partner za Čišćenje</h3>
-                <p>Smo profesionalna firma sa dugogodišnjim iskustvom u pružanju usluga čišćenja. Naš tim stručnjaka koristi najsavremeniju opremu i ekološki prihvatljiva sredstva kako bi Vam pružio uslugu najvišeg kvaliteta.</p>
-                <p>Verujemo da čist prostor doprinosi boljem kvalitetu života i rada, zato pristupamo svakom projektu sa pažnjom i posvećenošću.</p>
-                <div class="about-features">
-                    <div class="feature-item">✓ Licencirani i osigurani</div>
-                    <div class="feature-item">✓ Dostupni 24/7</div>
-                    <div class="feature-item">✓ Ekološka sredstva</div>
-                    <div class="feature-item">✓ Povoljne cene</div>
+                <h3 data-content="about-title">Vaš Pouzdani Partner za Čišćenje</h3>
+                <p data-content="about-desc-1">Smo profesionalna firma sa dugogodišnjim iskustvom u pružanju usluga čišćenja.</p>
+                <p data-content="about-desc-2">Verujemo da čist prostor doprinosi boljem kvalitetu života i rada.</p>
+                <div class="about-features" data-content="about-features">
+                    <!-- Features će biti dinamički popunjeni -->
                 </div>
             </div>
             <div>
                 <h3 class="section-title">Zašto Izabrati Nas?</h3>
-                <div class="why-choose">
-                    <div class="why-card">
-                        <div class="why-icon">⭐</div>
-                        <h3>Kvalitet</h3>
-                        <p>Najviši standardi u svakom poslu</p>
-                    </div>
-                    <div class="why-card">
-                        <div class="why-icon">⚡</div>
-                        <h3>Brzina</h3>
-                        <p>Efikasno i pravovremeno izvršavanje</p>
-                    </div>
-                    <div class="why-card">
-                        <div class="why-icon">💰</div>
-                        <h3>Cena</h3>
-                        <p>Konkurentne i transparentne cene</p>
-                    </div>
-                    <div class="why-card">
-                        <div class="why-icon">🤝</div>
-                        <h3>Poverenje</h3>
-                        <p>Stotine zadovoljnih klijenata</p>
-                    </div>
+                <div class="why-choose" data-content="why-choose">
+                    <!-- Why choose kartice će biti dinamički popunjene -->
                 </div>
             </div>
         </div>
@@ -891,55 +795,8 @@
     <!-- Gallery Section -->
     <section id="galerija">
         <h2 class="section-title">Galerija Naših Radova</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="./slika1.jpg" alt="Čišćenje prostora 1" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Profesionalno čišćenje</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika2.jpg" alt="Čišćenje prostora 2" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Mašinsko pranje podova</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika3.jpg" alt="Čišćenje prostora 3" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Dubinsko čišćenje</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika4.jpg" alt="Čišćenje prostora 4" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Čišćenje staklenih površina</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika5.jpg" alt="Čišćenje prostora 5" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Pranje tepiha</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika6.jpg" alt="Čišćenje prostora 6" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Održavanje zelenih površina</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika7.jpg" alt="Čišćenje prostora 7" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Čišćenje garaža</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="./slika8.jpg" alt="Čišćenje prostora 8" loading="lazy">
-                <div class="gallery-overlay">
-                    <p>Završni rezultati</p>
-                </div>
-            </div>
+        <div class="gallery-grid" data-content="gallery">
+            <!-- Galerija će biti dinamički popunjena -->
         </div>
     </section>
 
@@ -974,32 +831,34 @@
                     <div class="info-icon">📞</div>
                     <div class="info-text">
                         <h4>Telefon</h4>
-                        <p data-contact="phone">+381 XX XXX XXXX</p>
-                        <p data-contact="phone">+381 XX XXX XXXX</p>
+                        <div data-content="phones">
+                            <!-- Telefoni će biti dinamički popunjeni -->
+                        </div>
                     </div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon">✉️</div>
                     <div class="info-text">
                         <h4>Email</h4>
-                        <p data-contact="email">info@proclean.rs</p>
-                        <p data-contact="email">kontakt@proclean.rs</p>
+                        <div data-content="emails">
+                            <!-- Email-ovi će biti dinamički popunjeni -->
+                        </div>
                     </div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon">📍</div>
                     <div class="info-text">
                         <h4>Adresa</h4>
-                        <p data-contact="city">Beograd, Srbija</p>
-                        <p data-contact="note">Radimo na teritoriji cele Srbije</p>
+                        <p data-content="address-city">Beograd, Srbija</p>
+                        <p data-content="address-note">Radimo na teritoriji cele Srbije</p>
                     </div>
                 </div>
                 <div class="info-item">
                     <div class="info-icon">🕐</div>
                     <div class="info-text">
                         <h4>Radno Vreme</h4>
-                        <p data-contact="weekdays">Ponedeljak - Petak: 08:00 - 20:00</p>
-                        <p data-contact="weekend">Vikend: 09:00 - 17:00</p>
+                        <p data-content="work-weekdays">Ponedeljak - Petak: 08:00 - 20:00</p>
+                        <p data-content="work-weekend">Vikend: 09:00 - 17:00</p>
                     </div>
                 </div>
             </div>
@@ -1009,10 +868,10 @@
     <!-- Footer -->
     <footer>
         <p data-content="copyright">&copy; 2025 ProClean. Sva prava zadržana.</p>
-        <div class="social-links">
-            <a href="#" title="Facebook">📘</a>
-            <a href="#" title="Instagram">📷</a>
-            <a href="#" title="LinkedIn">💼</a>
+        <div class="social-links" data-content="social">
+            <a href="#" title="Facebook" data-social="facebook">📘</a>
+            <a href="#" title="Instagram" data-social="instagram">📷</a>
+            <a href="#" title="LinkedIn" data-social="linkedin">💼</a>
         </div>
     </footer>
 
