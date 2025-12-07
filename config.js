@@ -160,6 +160,3 @@ const siteConfig = {
     // Copyright
     copyright: '2025 ProClean. Sva prava zadržana.'
 };
-
-// Opciono: možete eksportovati ako koristite module
-// export default siteConfig;
