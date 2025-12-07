@@ -2,18 +2,106 @@
 // DINAMIČKO POPUNJAVANJE SAJTA
 // ============================================
 
-// Popunjavanje kontakt informacija iz config-a
-function populateContactInfo() {
+// Popunjavanje SVIH podataka iz config-a
+function populateSiteData() {
     if (typeof siteConfig === 'undefined') {
         console.error('siteConfig nije učitan! Proverite da li je config.js fajl povezan.');
         return;
     }
 
+    console.log('✅ siteConfig je učitan:', siteConfig);
+
+    // ===== LOGO I NAZIV =====
+    const logoElement = document.querySelector('.logo');
+    if (logoElement) {
+        logoElement.innerHTML = `✨ ${siteConfig.company.name}`;
+    }
+
+    // ===== HERO SEKCIJA =====
+    const heroTitle = document.querySelector('.hero h1');
+    const heroSubtitle = document.querySelector('.hero p');
+    const heroButton = document.querySelector('.hero .cta-button');
+    
+    if (heroTitle) heroTitle.textContent = siteConfig.hero.title;
+    if (heroSubtitle) heroSubtitle.textContent = siteConfig.hero.subtitle;
+    if (heroButton) heroButton.textContent = siteConfig.hero.ctaText;
+
+    // ===== O NAMA SEKCIJA =====
+    const aboutTitle = document.querySelector('.about-text h3');
+    const aboutParagraphs = document.querySelectorAll('.about-text p');
+    
+    if (aboutTitle) aboutTitle.textContent = siteConfig.about.title;
+    if (aboutParagraphs.length >= 2) {
+        aboutParagraphs[0].textContent = siteConfig.about.description[0];
+        aboutParagraphs[1].textContent = siteConfig.about.description[1];
+    }
+
+    // About features
+    const featureItems = document.querySelectorAll('.about-features .feature-item');
+    featureItems.forEach((item, index) => {
+        if (siteConfig.about.features[index]) {
+            item.textContent = '✓ ' + siteConfig.about.features[index];
+        }
+    });
+
+    // ===== ZAŠTO IZABRATI NAS =====
+    const whyCards = document.querySelectorAll('.why-card');
+    whyCards.forEach((card, index) => {
+        if (siteConfig.whyChooseUs[index]) {
+            const icon = card.querySelector('.why-icon');
+            const title = card.querySelector('h3');
+            const description = card.querySelector('p');
+            
+            if (icon) icon.textContent = siteConfig.whyChooseUs[index].icon;
+            if (title) title.textContent = siteConfig.whyChooseUs[index].title;
+            if (description) description.textContent = siteConfig.whyChooseUs[index].description;
+        }
+    });
+
+    // ===== USLUGE =====
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+        if (siteConfig.services[index]) {
+            const service = siteConfig.services[index];
+            card.setAttribute('data-service', service.id);
+            
+            const icon = card.querySelector('.service-icon');
+            const title = card.querySelector('h3');
+            const description = card.querySelector('p');
+            
+            if (icon) icon.textContent = service.icon;
+            if (title) title.textContent = service.title;
+            if (description) description.textContent = service.shortDescription;
+        }
+    });
+
+    // ===== GALERIJA =====
+    const galleryGrid = document.querySelector('.gallery-grid');
+    if (galleryGrid && siteConfig.gallery) {
+        galleryGrid.innerHTML = ''; // Očisti postojeće
+        
+        siteConfig.gallery.forEach(item => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.innerHTML = `
+                <img src="${item.src}" alt="${item.alt}" loading="lazy">
+                <div class="gallery-overlay">
+                    <p>${item.caption}</p>
+                </div>
+            `;
+            galleryGrid.appendChild(galleryItem);
+        });
+    }
+
+    // ===== KONTAKT INFORMACIJE =====
+    
     // Telefoni
     const phoneElements = document.querySelectorAll('[data-contact="phone"]');
     phoneElements.forEach((el, index) => {
         if (siteConfig.contact.phones[index]) {
             el.textContent = siteConfig.contact.phones[index];
+        } else {
+            el.style.display = 'none'; // Sakrij ako nema podatka
         }
     });
 
@@ -22,13 +110,15 @@ function populateContactInfo() {
     emailElements.forEach((el, index) => {
         if (siteConfig.contact.emails[index]) {
             el.textContent = siteConfig.contact.emails[index];
+        } else {
+            el.style.display = 'none';
         }
     });
 
     // Adresa
     const cityEl = document.querySelector('[data-contact="city"]');
     const noteEl = document.querySelector('[data-contact="note"]');
-    if (cityEl) cityEl.textContent = siteConfig.contact.address.city + ', ' + siteConfig.contact.address.country;
+    if (cityEl) cityEl.textContent = `${siteConfig.contact.address.city}, ${siteConfig.contact.address.country}`;
     if (noteEl) noteEl.textContent = siteConfig.contact.address.note;
 
     // Radno vreme
@@ -37,23 +127,25 @@ function populateContactInfo() {
     if (weekdaysEl) weekdaysEl.textContent = siteConfig.contact.workingHours.weekdays;
     if (weekendEl) weekendEl.textContent = siteConfig.contact.workingHours.weekend;
 
-    // Copyright
+    // ===== COPYRIGHT =====
     const copyrightEl = document.querySelector('[data-content="copyright"]');
     if (copyrightEl) copyrightEl.textContent = '© ' + siteConfig.copyright;
 
-    // Formspree action
+    // ===== FORMSPREE ACTION =====
     const form = document.getElementById('contactForm');
-    if (form) {
+    if (form && siteConfig.formspreeId !== 'YOUR_FORM_ID') {
         form.action = `https://formspree.io/f/${siteConfig.formspreeId}`;
     }
 
-    // Društvene mreže
+    // ===== DRUŠTVENE MREŽE =====
     const socialLinks = document.querySelectorAll('.social-links a');
     if (socialLinks.length >= 3) {
         socialLinks[0].href = siteConfig.social.facebook;
         socialLinks[1].href = siteConfig.social.instagram;
         socialLinks[2].href = siteConfig.social.linkedin;
     }
+
+    console.log('✅ Svi podaci su uspešno učitani na sajt!');
 }
 
 // ============================================
@@ -116,7 +208,7 @@ function initMobileMenu() {
 // SERVICE MODAL FUNCTIONALITY
 // ============================================
 
-// Detalji usluga - ovo možete prebaciti u config.js ako želite
+// Detalji usluga
 const serviceDetails = {
     'redovno-ciscenje': {
         icon: '🏢',
@@ -746,7 +838,7 @@ function initScrollAnimations() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Učitaj sve funkcionalnosti
-    populateContactInfo();
+    populateSiteData();  // PROMENJENA FUNKCIJA
     initThemeToggle();
     initMobileMenu();
     initServiceModals();
